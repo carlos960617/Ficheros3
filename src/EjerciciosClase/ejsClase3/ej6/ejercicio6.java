@@ -21,23 +21,35 @@ public class ejercicio6 {
         while(line != null){
 
             AL1.add(line);
+            line = br.readLine();
 
         }
 
         Collections.sort(AL1, CASE_INSENSITIVE_ORDER);
 
-        FileWriter fw = new FileWriter(name);
+        System.out.println(AL1);
+
+        br.close();
+
+        //Por defecto append es false
+
+        FileWriter fw = new FileWriter(name, false);
 
         PrintWriter f1 = new PrintWriter(fw);
 
-        /*for()*/
+        for(String s:AL1){
+            f1.println(s);
+        }
+
+        f1.close();
+
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
 
-
+    ordenarArchivoAlfab("OrdenAlfabetico.txt");
 
 
 
