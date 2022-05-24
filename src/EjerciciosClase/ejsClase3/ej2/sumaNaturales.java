@@ -34,7 +34,6 @@ public class sumaNaturales {
 
         BufferedReader br = new BufferedReader(fr);
 
-
         int resultado = sumaFichero(br);
 
         System.out.println(resultado);

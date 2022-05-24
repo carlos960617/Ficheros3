@@ -22,8 +22,14 @@ public class ejercicio7 {
         DataOutputStream dos = new DataOutputStream(fos);
 
         for(int i=0; i<lista.length-1;i++){
+            System.out.println(lista[i]);
             dos.writeInt(lista[i]);
+
+
+            System.out.println(precio[i]);
             dos.writeDouble(precio[i]);
+
+
 
         }
 

@@ -12,6 +12,8 @@ public class naturales100 {
 
         PrintWriter f1 = new PrintWriter(fw);
 
+        //FileWriter usa write()
+
         for(int i=1; i<=100;i++){
             if(i%10 == 0){
                 f1.println(i+" ");

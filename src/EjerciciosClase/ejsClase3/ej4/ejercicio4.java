@@ -16,7 +16,8 @@ public class ejercicio4 {
 
         BufferedReader br = new BufferedReader(fr);
 
-
+        /*String[] cadena = br.readLine();
+        cadena.split("\\*");*/
 
         return cadenas;
     }
