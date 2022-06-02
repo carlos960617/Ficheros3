@@ -2,11 +2,13 @@ package entregas.entrega3;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Agenda {
+public class Agenda implements Serializable {
 
     private ArrayList<Contacto> lista;
 
@@ -25,6 +27,9 @@ public class Agenda {
     public void añadirNuevoContacto(Contacto c){
 
         lista.add(c);
+        Collections.sort(lista);
+
+        System.out.println("Contacto guardado.");
 
     }
 
@@ -39,9 +44,10 @@ public class Agenda {
 
     public void mostrarContactos(char l){
 
+
         System.out.println("Contactos que empiezan por la letra \""+l+"\"");
         for(Contacto c:lista){
-            if(c.getNombre().charAt(0) == l){
+            if(c.getNombre().toLowerCase().charAt(0) == l){
                 System.out.println(c);
             }
         }
@@ -51,8 +57,8 @@ public class Agenda {
 
         System.out.println("Contactos que contienen la cadena \""+c+"\"");
         for(Contacto o:lista){
-            if(o.getNombre().contains(c)){
-                System.out.println(c);
+            if(o.getNombre().toLowerCase().contains(c.toLowerCase())){
+                System.out.println(o);
             }
         }
     }
@@ -63,7 +69,7 @@ public class Agenda {
         int contador = 0;
 
         for(Contacto o:lista){
-            if(o.getNombre().toLowerCase().contains(c)){
+            if(o.getNombre().toLowerCase().contains(c.toLowerCase())){
                 contieneC.add(o);
                 contador ++;
             }
@@ -76,20 +82,28 @@ public class Agenda {
     public void eliminarContacto(String c){
 
         Scanner sc = new Scanner(System.in);
-        char opcion;
 
-        for(Contacto o:lista){
-            if(o.getNombre().toLowerCase().contains(c)){
-                System.out.println("¿Seguro que quieres eliminar el contacto \""+o.getNombre()+"\" ?(s/n)");
-                opcion = sc.next().charAt(0);
-
+        ArrayList<Contacto> nueva = new ArrayList<>();
+        for(int i=0; i<lista.size();i++){
+            if(lista.get(i).getNombre().toLowerCase().contains(c.toLowerCase())){
+                System.out.println("¿Seguro que quieres eliminar el contacto \""+lista.get(i).getNombre()+"\" ?(s/n)");
+                char opcion = sc.nextLine().charAt(0);
                 if(opcion == 's'){
-                    lista.remove(o);
+                    lista.set(i, null);
                 }else{
-                    System.out.println("El contacto no se eliminará.");
+                    System.out.println("Este contacto no se eliminará.");
                 }
+
             }
         }
+
+        for(Contacto con: lista){
+            if (con != null){
+                nueva.add(con);
+            }
+        }
+
+        lista = nueva;
     }
 
 

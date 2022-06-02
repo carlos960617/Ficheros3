@@ -1,6 +1,8 @@
 package entregas.entrega3;
 
-public class Contacto implements Comparable<Contacto> {
+import java.io.Serializable;
+
+public class Contacto implements Comparable<Contacto>, Serializable {
 
     private String nombre;
     private String telefono;
@@ -30,22 +32,14 @@ public class Contacto implements Comparable<Contacto> {
 
     @Override
     public String toString() {
-        return "Contacto{" +
-                "nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return nombre +
+                " = " + telefono;
     }
 
     @Override
     public int compareTo(Contacto o) {
 
-        if(this.nombre == o.nombre){
-            return 0;
-        }else if(this.nombre.compareToIgnoreCase(o.nombre) > 0 ){
-            return 1;
-        }else{
-            return -1;
-        }
+        return this.nombre.toLowerCase().compareTo(o.nombre.toLowerCase());
 
     }
 }
